@@ -59,6 +59,38 @@ function business_profile_settings_init() {
         'business_profile_section'
     );
 
+    add_settings_field(
+        'business_address_two',
+        'Business Address Two',
+        'business_address_two_callback',
+        'business-profile',
+        'business_profile_section'
+    );
+
+    add_settings_field(
+        'business_city',
+        'Business City',
+        'business_city_callback',
+        'business-profile',
+        'business_profile_section'
+    );
+
+    add_settings_field(
+        'business_state',
+        'Business State',
+        'business_state_callback',
+        'business-profile',
+        'business_profile_section'
+    );
+
+    add_settings_field(
+        'business_zipcode',
+        'Business Zip Code',
+        'business_zipcode_callback',
+        'business-profile',
+        'business_profile_section'
+    );
+
     // Phone Numbers
     add_settings_field(
         'business_phone',
@@ -73,6 +105,24 @@ function business_profile_settings_init() {
         'business_email',
         'Email Addresses',
         'business_email_callback',
+        'business-profile',
+        'business_profile_section'
+    );
+
+    // Facebook
+    add_settings_field(
+        'business_facebook',
+        'Facebook Page',
+        'business_facebook_callback',
+        'business-profile',
+        'business_profile_section'
+    );
+
+    // Instagram
+    add_settings_field(
+        'business_instagram',
+        'Instagram Page',
+        'business_instagram_callback',
         'business-profile',
         'business_profile_section'
     );
@@ -102,10 +152,41 @@ function business_address_callback() {
     $options = get_option('business_profile_options');
     $address = isset($options['business_address']) ? $options['business_address'] : '';
     ?>
-    <textarea name="business_profile_options[business_address]" rows="5" cols="50" class="large-text"><?php echo esc_textarea($address); ?></textarea>
-    <p class="description">Enter your complete business address.</p>
+    <input name="business_profile_options[business_address]" class="large-text" value="<?php echo esc_textarea($address); ?>">
+    <p class="description">Enter your business street address.</p>
     <?php
 }
+
+// Business Address Two callback
+function business_address_two_callback() {
+    $options = get_option('business_profile_options');
+    $address_two = isset($options['business_address_two']) ? $options['business_address_two'] : '';
+    ?>
+    <input name="business_profile_options[business_address_two]" class="large-text" value="<?php echo esc_textarea($address_two); ?>">
+    <p class="description">Enter your business street address.</p>
+    <?php
+}
+
+// Business City callback
+function business_city_callback() {
+    $options = get_option('business_profile_options');
+    $business_city = isset($options['business_city']) ? $options['business_city'] : '';
+    ?>
+    <input name="business_profile_options[business_city]" class="large-text" value="<?php echo esc_textarea($business_city); ?>">
+    <p class="description">Enter your business city.</p>
+    <?php
+}
+
+// Business State callback
+function business_state_callback() {
+    $options = get_option('business_profile_options');
+    $business_state = isset($options['business_state']) ? $options['business_state'] : '';
+    ?>
+    <input name="business_profile_options[business_state]" class="large-text" value="<?php echo esc_textarea($business_state); ?>">
+    <p class="description">Enter your business city.</p>
+    <?php
+}
+
 
 // Phone Numbers callback
 function business_phone_callback() {
@@ -117,6 +198,16 @@ function business_phone_callback() {
     <?php
 }
 
+// Business Zipcode callback
+function business_zipcode_callback() {
+    $options = get_option('business_profile_options');
+    $business_zipcode = isset($options['business_zipcode']) ? $options['business_zipcode'] : '';
+    ?>
+    <input name="business_profile_options[business_zipcode]" class="large-text" value="<?php echo esc_textarea($business_zipcode); ?>">
+    <p class="description">Enter your business city.</p>
+    <?php
+}
+
 // Email Addresses callback
 function business_email_callback() {
     $options = get_option('business_profile_options');
@@ -124,6 +215,26 @@ function business_email_callback() {
     ?>
     <textarea name="business_profile_options[business_email]" rows="3" cols="50" class="large-text"><?php echo esc_textarea($email); ?></textarea>
     <p class="description">Enter your email addresses, one per line.</p>
+    <?php
+}
+
+// Business Facebook callback
+function business_facebook_callback() {
+    $options = get_option('business_profile_options');
+    $business_facebook = isset($options['business_facebook']) ? $options['business_facebook'] : '';
+    ?>
+    <input name="business_profile_options[business_facebook]" class="large-text" value="<?php echo esc_textarea($business_facebook); ?>">
+    <p class="description">Enter your business Facebook page.</p>
+    <?php
+}
+
+// Business Instagram callback
+function business_instagram_callback() {
+    $options = get_option('business_profile_options');
+    $business_instagram = isset($options['business_instagram']) ? $options['business_instagram'] : '';
+    ?>
+    <input name="business_profile_options[business_instagram]" class="large-text" value="<?php echo esc_textarea($business_instagram); ?>">
+    <p class="description">Enter your business Instagram page.</p>
     <?php
 }
 
@@ -175,6 +286,7 @@ function business_profile_shortcode($atts) {
     return $output;
 }
 add_shortcode('business_profile', 'business_profile_shortcode');
+
 
 // Add some basic CSS
 function business_profile_styles() {
